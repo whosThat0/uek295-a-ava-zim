@@ -1,5 +1,6 @@
 package ch.noseryoung.uek295.domain.account;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
@@ -17,21 +18,17 @@ import java.util.UUID;
 public class Account {
     @NotNull
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "account_id", nullable = false)
     private UUID id;
     @Getter
-    @Email(message = "not a valid e-mail address", regexp = "[A-Za-z0-9@]")
     @Column(name = "email")
     private String email;
+    //validation
     @Getter
-    @NotBlank
-    @NotEmpty
-    @NotNull
-    @Length(min = 7, max = 30)
     @Column(name = "password")
     private String password;
     @Getter
-    @PastOrPresent(message = "need's to be in the past")
     @Column(name = "created_at")
     private Date created_at;
 

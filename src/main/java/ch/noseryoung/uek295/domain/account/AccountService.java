@@ -15,22 +15,6 @@ public class AccountService {
     @Autowired
     private AccountRepository repository;
 
-    /*public Account updateAccount(UUID accountId, Account accountUpdate){
-        Optional<Account> existingAccount = repository.findById(accountId);
-        if (existingAccount.isPresent()){
-            Account updatedAccount = existingAccount.get();
-            updatedAccount.setEmail(accountUpdate.getEmail());
-            log.info("successfully updated email");
-            updatedAccount.setPassword(accountUpdate.getPassword());
-            log.info("successfully updated password");
-            repository.save(updatedAccount);
-        } else {
-            log.error("Update failed: Account {} not found", accountId);
-            throw new NoSuchElementException("Account with ID " + accountId + " not found");
-        }
-        return repository.save(accountUpdate);
-    }*/
-
     public Account updateById(UUID id, Account account) throws NoSuchElementException {
         if (repository.existsById(id)) {
             account.setId(id);
@@ -38,10 +22,6 @@ public class AccountService {
         } else {
             throw new NoSuchElementException(String.format("Entity with ID '%s' could not be found", id));
         }
-    }
-
-    public Account createAccount(Account account){
-        return repository.save(account);
     }
 
     public Account getAccountById(UUID accountId){

@@ -22,30 +22,30 @@ public class AccountController {
 
     }
 
-    @GetMapping("/account")
+    @GetMapping("/account")//works
     public List<Account> getAccounts() {
         return service.allAccounts();
     }
 
-    @GetMapping("/account/{id}")
+    @GetMapping("/account/{id}")//works
     public Account getAccount(@PathVariable UUID id) {
         return service.getAccountById(id);
     }
 
-    @PostMapping("/account")
+    @PostMapping("/account") //works
     public void addAccount(@RequestBody Account account) {
         accountRepository.save(account);
     }
 
-    @DeleteMapping("/account/{id}")
+    @DeleteMapping("/account/{id}") //works
     public void deleteAccountWithID(@PathVariable UUID id) {
         log.info("Deleting account with ID: " + id);
         accountRepository.deleteById(id);
     }
 
-    @PutMapping("/account/{id}")
-    public Account updateAccounts(@PathVariable UUID ID, @RequestBody Account account) {
-        return service.updateById(ID, account);
+    @PutMapping("/account/{id}") //works
+    public Account updateAccounts(@PathVariable String id, @RequestBody Account account) {
+        return service.updateById(UUID.fromString(id), account);
     }
 }
 
