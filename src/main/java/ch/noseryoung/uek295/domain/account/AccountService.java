@@ -18,15 +18,16 @@ public class AccountService {
     public Account updateById(UUID id, Account account) throws NoSuchElementException {
         if (repository.existsById(id)) {
             account.setId(id);
+            log.info("Updating account with id: " + id);
             return repository.save(account);
-        } else {
-            throw new NoSuchElementException(String.format("Entity with ID '%s' could not be found", id));
         }
+        throw new NoSuchElementException(String.format("Entity with ID '%s' could not be found", id));
     }
 
     public Account getAccountById(UUID accountId){
         Optional<Account> existingAccount = repository.findById(accountId);
         if (existingAccount.isPresent()){
+            log.info("Account with ID '{}' found", accountId);
             return existingAccount.get();
         }
         throw new NoSuchElementException("Account with ID " + accountId + " not found");

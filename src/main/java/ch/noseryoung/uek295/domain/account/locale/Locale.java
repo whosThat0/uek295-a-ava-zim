@@ -1,4 +1,4 @@
-package domain.locale;
+package ch.noseryoung.uek295.domain.account.locale;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

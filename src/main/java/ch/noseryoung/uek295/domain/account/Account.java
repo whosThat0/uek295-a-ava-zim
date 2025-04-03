@@ -1,7 +1,9 @@
 package ch.noseryoung.uek295.domain.account;
+import ch.noseryoung.uek295.domain.account.locale.Locale;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.Date;
@@ -36,6 +38,12 @@ public class Account {
     @Getter
     @Column(name = "created_at")
     private Date created_at;
+    @Column(name = "id_locale")
+    private UUID id_locale;
+
+    @ManyToOne
+    @JoinColumn(name = "locale_locale_id")
+    private Locale locale;
 
     public Account(UUID id, String email, String password, Date created_at) {
         this.id = id;
